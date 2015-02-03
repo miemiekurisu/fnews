@@ -32,7 +32,9 @@ class SinaSpider(scrapy.Spider):
 	#		title.append(i)
 	#	item['title']=title
 		item['url'] = ct.xpath('a/@href').extract()
-		item['updatetime']=ct.xpath('span/text()').extract()
+		items=[]
+		items.extend([self.make_requests_from_url(url).replace(callback=self.parse) for url in item['url']]) 
+		item['updatetime']=scrapy.Selector(items[0]).xpath('//a')#ct.xpath('span/text()').extract()
 		items1.append(item)
 	#hx['content']=x.xpath('//*[@id="artibody"]/text()').extract()
 	#hx['publishdate']=NUL

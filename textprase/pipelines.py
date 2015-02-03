@@ -18,7 +18,10 @@ class TextprasePipeline(object):
 	    text = ''
 	    for i in item['title']:
 	        text=text+i
-	    text= '"'+str(item['url'])+'",'+'"'+text+'"\n'
+	    updatetime=''
+	    for j in item['updatetime']:
+	        updatetime=updatetime+j
+	    text= '"'+str(item['url'])+'",'+'"'+text+","+updatetime+'"\n'
 	    if text !='' and text !=' ':
 	        self.mfile.write(text)
         return item
