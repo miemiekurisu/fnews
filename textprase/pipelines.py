@@ -20,7 +20,10 @@ class TextprasePipeline(object):
 	        title = title+i
 	    content=''
 	    for j in item['content']:
+                j=j.replace(u'\n','') 
+                j=j.replace(u',','')
 	        content=content+j
+                    
             #seg_list = jieba.cut(content,cut_all=False)
             #print "Test Seg:","/".join(seg_list)
 	    text= '"'+str(item['url'])+'","'+title+'","'+content+'","'+item['updatetime']+'"\n'
