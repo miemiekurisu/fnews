@@ -20,7 +20,7 @@ class SinanewSpider(scrapy.Spider):
         year = time.strftime('%Y',t)
         updatetime = ''
         if len(st)==14:
-            updatetime=year+st[1:3]+'/'+st[4:6]+'/'+st[-6:-1]
+            updatetime=year+'/'+st[1:3]+'/'+st[4:6]+'/'+st[-6:-1]
         elif len(st)==19:
             updatetime=st[1:5]+'/'+st[6:8]+'/'+st[9:11]+'/'+st[-6:-1]
         return updatetime
