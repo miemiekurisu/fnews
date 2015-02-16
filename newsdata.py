@@ -82,4 +82,3 @@ a = textprocess(data)
 makefiles(a)
 endtime =time.clock()
 print 'totaltime='+str(endtime-starttime)
-
