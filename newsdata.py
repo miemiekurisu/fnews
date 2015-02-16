@@ -12,17 +12,17 @@ starttime =time.clock()
 print 'start at:'+str(starttime)
 def calcfreq(seg_list):
     cnlist = [u'！',u' ',u'￥',u'……',u'（',u'）',u'——',u'【',u'】',u'、',u'；',u'：',u'，',u'。',u'《',u'》',u'？',u'你',u'我',u'他',u'她',u'它',u'啊',u'吧',u'的',u'是',u'\u3000',u'"',u')',u'(',u'“',u'%',u'”',u'/',u'\\',u'‘',u'．',u'呀',u'.',u'']
-    reg = re.compile(r'\d+')
-    reg2 = re.compile(r'[a-z|A-Z]')
+    reg = re.compile(r'\d+|[a-z|A-Z]')
     empty={}
     for i in seg_list.split('|'):
-        if i not in empty and i not in cnlist and not reg.match(i) and not reg2.match(i):
+        if i not in empty and i not in cnlist and not reg.match(i) :
             empty[i]=1
         elif i in empty:
             empty[i]+=1
     return empty
 
 def textprocess(data):
+    processtime =time.clock()
     lines = data.readlines()
     timemap = {}
     a=0
@@ -30,6 +30,7 @@ def textprocess(data):
         a+=1
         if a%3000==0:
             print "log line: "+str(a)
+            print str(a)+'loops in '+str(time.clock()-processtime)
         #if a==400:
         #    break
         line = i.split(',')
@@ -73,7 +74,7 @@ def makefiles(mapdata):
         logfile.write(calcvalues[1:].decode('utf-8','replace')+'\n')
         logfile.flush()
     for i in totalwords.keys():
-        if totalwords[i]>1:
+        if totalwords[i]>2:
             statisticfile.write(i.decode('utf-8','reploace')+','+str(totalwords[i])+'\n')
 
 data = open('data.csv','r')
