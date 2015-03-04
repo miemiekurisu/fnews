@@ -13,7 +13,7 @@ class SinanewSpider(scrapy.Spider):
     name = "reuters"
     allowed_domains = ["reuters.com"]
     start_urls = (
-        "http://cn.reuters.com/news/archive/CNTopGenNews?date=02012013", 
+            "http://cn.reuters.com/news/archive/CNTopGenNews?view=page&page=1", 
     )
     def timelineparse(self,st):
         t = time.localtime(time.time())
